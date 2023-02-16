@@ -16,6 +16,8 @@ import i18next from "i18next";
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { ToastContainer, toast } from "react-toastify";
+
+import 'react-toastify/dist/ReactToastify.css'
 import axios from "axios";
 const options = [
   { value: 'en', label: 'English' },
@@ -60,7 +62,16 @@ export default function Register() {
         toast.error(data.data.msg)
       }else{
         toast.success(data.msg,toastobj)
-        
+        setvalues({
+          username: "",
+          phone_number: "",
+          email: "",
+          about:"",
+          isseller:"",
+          password:"",
+          address:""
+        })
+        resetTranscript()
       }
   };
   const toastobj = {
@@ -95,6 +106,7 @@ export default function Register() {
     // <button onClick={resetTranscript}>Reset</button>
     // <p>{transcript}</p></div>
     <Maincomponent>
+      <ToastContainer />
       <Leftregister>
         <Spline
           scene="https://prod.spline.design/I3dx1vVMZy55sFuC/scene.splinecode"
@@ -228,14 +240,7 @@ export default function Register() {
     </Maincomponent>
   );
 }
-// username=models.CharField(max_length=100)
-//     address=models.CharField(max_length=100)
-//     phone_number=models.CharField(max_length=10)
-//     about=models.CharField(max_length=100)
-//     password=models.CharField(max_length=10)
-//     registertime=models.DateField(auto_now=True)
-//     isseller=models.BooleanField(max_length=10,default=False)
-//     numberitem=models.IntegerField(default=0)
+
 
 const Maincomponent = styled.div`
   display: flex;
