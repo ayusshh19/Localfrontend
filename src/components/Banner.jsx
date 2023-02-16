@@ -34,7 +34,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
-color: RGB(134, 155, 188);
+color: #090842;
 @media (max-width:990px) {
     display: none;
 }
@@ -46,7 +46,7 @@ const Bannerbutton=styled.button`
     align-items: center;
     padding: 0.7rem;
     border-radius: 3rem;
-    background-color: RGB(134, 155, 188);
+    background-color: #090842;
     color: white;
     border: none;
     cursor: pointer;
