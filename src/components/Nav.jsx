@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import elogo from "../assets/logo.png";
 import ReactSearchBox from "react-search-box";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -35,7 +35,7 @@ export default function Nav() {
       value: "Karius",
     },
   ];
-
+  const navigate = useNavigate();
   return (
     <Navbar>
       <Navleft>
@@ -61,7 +61,7 @@ export default function Nav() {
           callback={(record) => console.log(record)}
         />
         <Navright>
-          <Navbutton>
+          <Navbutton onClick={()=>{navigate('/accounts')}}>
             <AccountCircleIcon /> Account
           </Navbutton>
           <Navbutton>
