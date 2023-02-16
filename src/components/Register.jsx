@@ -271,6 +271,12 @@ const Rightregister = styled.div`
     width: 80%;
     color: white;
   }
+  .registertext svg{
+    color: white;
+  }
+  .registertext label{
+    color: white;
+  }
   .selectlanguage{
     width: 100%;
     display: flex;
