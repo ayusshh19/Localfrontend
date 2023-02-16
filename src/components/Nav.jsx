@@ -155,7 +155,7 @@ const Navcenter = styled.div`
     right: 2%;
     width: 270px;
     height: 29vh;
-    background-color: green;
+    background-color: RGB(134, 155, 188);
     flex-direction: column;
     border-radius: 1rem;
     transition: all 0.5s ease;

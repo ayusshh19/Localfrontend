@@ -49,6 +49,7 @@ const Bannerbutton=styled.button`
     background-color: RGB(134, 155, 188);
     color: white;
     border: none;
+    cursor: pointer;
 `
 const Bannerright = styled.div`
 flex:2;
