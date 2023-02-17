@@ -16,27 +16,22 @@ import i18next from "i18next";
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { ToastContainer, toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css'
 import axios from "axios";
 import LoginIcon from '@mui/icons-material/Login';
-const options = [
-  { value: 'en', label: 'English' },
-  { value: 'hi', label: 'Hindi' }
-]
 
-export default function Register() {
+
+export default function Register(props) {
   const {
     transcript,
-    listening,
     resetTranscript,
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
-
+  const navigate=useNavigate()
   const { t } = useTranslation();
   const handleClick = (e) => {
     i18next.changeLanguage(e.target.value);
-    console.log(e.target.value);
   };
   const handlesubmit = async (e) => {
     e.preventDefault();
@@ -59,7 +54,7 @@ export default function Register() {
         address
       });
       console.log(data)
-      if(data.status==400){
+      if(data.status===400){
         toast.error(data.data.msg)
       }else{
         toast.success(data.msg,toastobj)
@@ -72,7 +67,9 @@ export default function Register() {
           password:"",
           address:""
         })
+
         resetTranscript()
+        navigate('/')
       }
   };
   const toastobj = {
@@ -237,7 +234,10 @@ export default function Register() {
         <Registersubmit onClick={(e) => handlesubmit(e)}>
           Submit
         </Registersubmit>
-        <Link to={'/login'} className='tologin'>already registered? Login here <LoginIcon /></Link>
+        <Link onClick={(e)=>{
+          e.preventDefault()
+          props.setlogin(true)
+        }} className='tologin'>already registered? Login here <LoginIcon /></Link>
       </Rightregister>
     </Maincomponent>
   );

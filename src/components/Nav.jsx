@@ -9,7 +9,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import CloseIcon from "@mui/icons-material/Close";
-export default function Nav() {
+export default function Nav({username}) {
   const [closenav, setclosenav] = useState(true);
   const options = ["Shoes", "Clothes", "Electronic"];
   const defaultOption = "Category";
@@ -74,6 +74,9 @@ export default function Nav() {
             }}
           >
             {closenav ? <MenuIcon /> : <CloseIcon />}
+          </div>
+          <div className="Welcome">
+            {username?`Welcome ${username}`:''}
           </div>
         </Navright>
       </Navitems>
