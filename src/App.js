@@ -4,6 +4,7 @@ import Accounts from "./pages/Accounts";
 import Dashboard from "./pages/Dashboard";
 
 
+
 function App() {
   return (
     <BrowserRouter>
@@ -12,6 +13,8 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/accounts" element={<Accounts />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          
+
       </Routes>
     </BrowserRouter>
   );

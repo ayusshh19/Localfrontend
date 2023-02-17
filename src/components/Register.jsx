@@ -259,7 +259,7 @@ const Leftregister = styled.div`
   justify-content: center;
   align-items: center;
   width: 50%;
-  height: 100%;
+  height: 100%; 
 `;
 const Rightregister = styled.div`
   width: 50%;

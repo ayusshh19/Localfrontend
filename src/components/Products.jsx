@@ -22,6 +22,13 @@ const style = {
   },
 };
 
+const goToCheckout = e => {
+  history.push(`/checkout/${props.cart.id}`)
+  localStorage.setItem('cart-id', props.cart.id)
+  props.setModalOpen(false)
+  props.setCheckout(true)
+}
+
 export default function Products() {
   const [productdata, setproductdata] = useState([]);
   const [open, setOpen] = React.useState(false);
@@ -69,7 +76,9 @@ export default function Products() {
               <h1>Price : ₹ {modalitem?.price}</h1>
               <p>Ratings : {modalitem?.rating?.rate}</p>
               <Modalbuttoncontainer>
-                <Modalbutton>
+                <Modalbutton
+                onClick={goToCheckout}
+                >
                     Buy Now
                 </Modalbutton>
                 <Modalbutton>

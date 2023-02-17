@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import elogo from "../assets/logo.png";
 import ReactSearchBox from "react-search-box";
+import SearchIcon from '@mui/icons-material/Search';
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -54,6 +55,7 @@ export default function Nav() {
         <Link to={""}>Delivery</Link>
       </Navcenter>
       <Navitems>
+        < SearchIcon />
         <ReactSearchBox
           placeholder="Search"
           value="Doe"
