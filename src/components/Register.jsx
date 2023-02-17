@@ -16,9 +16,10 @@ import i18next from "i18next";
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { ToastContainer, toast } from "react-toastify";
-
+import { Link } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css'
 import axios from "axios";
+import LoginIcon from '@mui/icons-material/Login';
 const options = [
   { value: 'en', label: 'English' },
   { value: 'hi', label: 'Hindi' }
@@ -236,6 +237,7 @@ export default function Register() {
         <Registersubmit onClick={(e) => handlesubmit(e)}>
           Submit
         </Registersubmit>
+        <Link to={'/login'} className='tologin'>already registered? Login here <LoginIcon /></Link>
       </Rightregister>
     </Maincomponent>
   );
@@ -252,7 +254,12 @@ const Maincomponent = styled.div`
   color: white;
   font-size: larger;
   border-radius: 2rem;
- 
+ .tologin{
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
 `;
 const Leftregister = styled.div`
   display: flex;

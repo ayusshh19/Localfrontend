@@ -1,13 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200&display=swap");
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Mulish;
+
+.mainaddtocart {
+  font-size: 55.5%;
+  width: 80%;
+  height: 100vh;
+  margin: auto;
 }
-
-
 
 :root {
   --main-color: #333;
@@ -28,7 +27,6 @@ i {
   font-size: 1.6rem;
   cursor: pointer;
 }
-
 
 header {
   width: 100%;
@@ -304,27 +302,13 @@ header {
   background-color: #0077dc;
 }
 
-.card-total .clear-cart {
-  margin-left: 3rem;
-  background-color: rgb(209, 61, 61);
-}
-
-.card-total .clear-cart:hover {
-  background-color: rgb(197, 5, 5);
-}
-
 /* responsive media queries  */
 
-@media (max-width: 968px) {
-  html {
-    font-size: 50%;
-  }
-}
+
 
 @media (max-width: 768px) {
   .continue-shopping h3 {
     margin-left: 0;
-    font-size: 1.85rem;
   }
 
   .items-info {
