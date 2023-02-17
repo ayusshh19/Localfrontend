@@ -54,7 +54,7 @@ const Cart = () => {
   return (
     <CartContext.Provider
       value={{ ...state, removeItem, clearCart, increment, decrement }}>
-      <ContextCart />
+      <ContextCart className="mainaddtocart"/>
     </CartContext.Provider>
   );
 };

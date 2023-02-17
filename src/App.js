@@ -4,6 +4,7 @@ import Accounts from "./pages/Accounts";
 import Dashboard from "./pages/Dashboard";
 import Cart from "./component/Cart"
 import Loading from "./pages/Loading";
+import Login from "./components/Login";
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Home />} />
           <Route index element={<Home />} />
           <Route path="/accounts" element={<Accounts />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/addtocart" element={<Cart/>} />
           <Route path="load" element={<Loading/>}/>

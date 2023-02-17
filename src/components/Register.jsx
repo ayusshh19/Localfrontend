@@ -16,26 +16,22 @@ import i18next from "i18next";
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { ToastContainer, toast } from "react-toastify";
-
+import { Link, useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css'
 import axios from "axios";
-const options = [
-  { value: 'en', label: 'English' },
-  { value: 'hi', label: 'Hindi' }
-]
+import LoginIcon from '@mui/icons-material/Login';
 
-export default function Register() {
+
+export default function Register(props) {
   const {
     transcript,
-    listening,
     resetTranscript,
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
-
+  const navigate=useNavigate()
   const { t } = useTranslation();
   const handleClick = (e) => {
     i18next.changeLanguage(e.target.value);
-    console.log(e.target.value);
   };
   const handlesubmit = async (e) => {
     e.preventDefault();
@@ -58,7 +54,7 @@ export default function Register() {
         address
       });
       console.log(data)
-      if(data.status==400){
+      if(data.status===400){
         toast.error(data.data.msg)
       }else{
         toast.success(data.msg,toastobj)
@@ -71,7 +67,9 @@ export default function Register() {
           password:"",
           address:""
         })
+
         resetTranscript()
+        navigate('/')
       }
   };
   const toastobj = {
@@ -236,6 +234,10 @@ export default function Register() {
         <Registersubmit onClick={(e) => handlesubmit(e)}>
           Submit
         </Registersubmit>
+        <Link onClick={(e)=>{
+          e.preventDefault()
+          props.setlogin(true)
+        }} className='tologin'>already registered? Login here <LoginIcon /></Link>
       </Rightregister>
     </Maincomponent>
   );
@@ -252,7 +254,12 @@ const Maincomponent = styled.div`
   color: white;
   font-size: larger;
   border-radius: 2rem;
- 
+ .tologin{
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
 `;
 const Leftregister = styled.div`
   display: flex;
@@ -269,6 +276,12 @@ const Rightregister = styled.div`
   align-items: center;
   .registertext{
     width: 80%;
+    color: white;
+  }
+  .registertext svg{
+    color: white;
+  }
+  .registertext label{
     color: white;
   }
   .selectlanguage{
