@@ -44,6 +44,8 @@ export default function Register(props) {
         password,
         address
       } = values;
+      const district=props.location.city
+      const state=props.location.region
       const { data } = await axios.post("http://127.0.0.1:8000/register/", {
         username,
         email,
@@ -51,7 +53,9 @@ export default function Register(props) {
         about,
         isseller,
         password,
-        address
+        address,
+        district,
+        state
       });
       console.log(data)
       if(data.status===400){
@@ -65,11 +69,12 @@ export default function Register(props) {
           about:"",
           isseller:"",
           password:"",
-          address:""
+          address:"",
+          
         })
 
         resetTranscript()
-        navigate('/')
+        navigate('/',{state:{'username':username,'password':password}})
       }
   };
   const toastobj = {
