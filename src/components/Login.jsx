@@ -7,29 +7,20 @@ import Spline from "@splinetool/react-spline";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import BadgeIcon from "@mui/icons-material/Badge";
-import EmailIcon from "@mui/icons-material/Email";
 import KeyIcon from "@mui/icons-material/Key";
-import ContactsIcon from "@mui/icons-material/Contacts";
-import HomeIcon from "@mui/icons-material/Home";
 import {useTranslation} from "react-i18next";
 import i18next from "i18next";
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
-const options = [
-  { value: 'en', label: 'English' },
-  { value: 'hi', label: 'Hindi' }
-]
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const {
     transcript,
-    listening,
     resetTranscript,
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
-
+  const navigate=useNavigate()
   const { t } = useTranslation();
   const handleClick = (e) => {
     i18next.changeLanguage(e.target.value);
@@ -39,28 +30,22 @@ export default function Login() {
     e.preventDefault();
       const {
         username,
-        email,
-        phone_number,
-        about,
-        isseller,
-        password,
-        address
+        password
       } = values;
-      const { data } = await axios.post("http://127.0.0.1:8000/register/", {
+      const { data } = await axios.post("http://127.0.0.1:8000/login/", {
         username,
-        email,
-        phone_number,
-        about,
-        isseller,
-        password,
-        address
+        password
       });
-      console.log(data)
-      if(data.status==400){
+      if(data.status===404){
         toast.error(data.data.msg)
       }else{
         toast.success(data.msg,toastobj)
-        
+        navigate('/',{state:{'username':username,'password':password}})
+        setvalues({
+          username: "",
+          password:""
+        })
+        resetTranscript()
       }
   };
   const toastobj = {
@@ -72,18 +57,12 @@ export default function Login() {
   };
   const handlechange = (e) => {
     setvalues({ ...values, [e.target.name]: e.target.value});
-    console.log(values);
     SpeechRecognition.stopListening()
   };
 
   const [values, setvalues] = useState({
     username: "",
-    phone_number: "",
-    email: "",
-    about:"",
-    isseller:"",
-    password:"",
-    address:""
+    password:""
   });
   if (!browserSupportsSpeechRecognition) {
     return <span>Browser doesn't support speech recognition.</span>;
@@ -95,9 +74,10 @@ export default function Login() {
     // <button onClick={resetTranscript}>Reset</button>
     // <p>{transcript}</p></div>
     <Maincomponent>
+      <ToastContainer />
       <Leftregister>
         <Spline
-          scene="https://prod.spline.design/I3dx1vVMZy55sFuC/scene.splinecode"
+          scene="https://prod.spline.design/StsaTsKhSVKTNMPW/scene.splinecode"
           style={{ display: "block", width: "100%", height: "100%" ,borderRadius: "2rem"}}
         />
       </Leftregister>
@@ -130,24 +110,7 @@ export default function Login() {
           }}
           variant="standard"
         />
-        <TextField
-          id="input-with-icon-textfield"
-          label={t('Enter your email')}
-          className='registertext'
-          name='email'
-          value={values.email?values.email:transcript}
-          onFocus={SpeechRecognition.startListening}
-          onBlur={(e) => handlechange(e)}
-          color="warning"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <EmailIcon />
-              </InputAdornment>
-            ),
-          }}
-          variant="standard"
-        />
+        
         <TextField
           id="input-with-icon-textfield"
           label={t('Enter your password')}
@@ -166,61 +129,8 @@ export default function Login() {
           }}
           variant="standard"
         />
-        <TextField
-          id="input-with-icon-textfield"
-          label={t('Enter your phone number')}
-          className='registertext'
-          name="phone_number"
-          value={values.phone_number?values.phone_number:transcript}
-          onFocus={SpeechRecognition.startListening}
-          onBlur={(e) => handlechange(e)}
-          color="warning"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <ContactsIcon />
-              </InputAdornment>
-            ),
-          }}
-          variant="standard"
-        />
-        <TextField
-          id="input-with-icon-textfield"
-          label={t('Enter your address')}
-          className='registertext'
-          name="address"
-          value={values.address?values.address:transcript}
-          onFocus={SpeechRecognition.startListening}
-          onBlur={(e) => handlechange(e)}
-          color="warning"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <HomeIcon />
-              </InputAdornment>
-            ),
-          }}
-          variant="standard"
-        />
-        <TextField
-          id="input-with-icon-textfield"
-          label={t('Enter about yourself')}
-          className='registertext'
-          name="about"
-          value={values.about?values.about:transcript}
-          onFocus={SpeechRecognition.startListening}
-          onBlur={(e) => handlechange(e)}
-          color="warning"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <HomeIcon />
-              </InputAdornment>
-            ),
-          }}
-          variant="standard"
-        />
-        <FormControlLabel name="isseller" control={<Checkbox />} onChange={(e) => handlechange(e)} label={t('Want to be seller ?')} />
+       
+        
         <Registersubmit onClick={(e) => handlesubmit(e)}>
           Submit
         </Registersubmit>
@@ -257,6 +167,12 @@ const Rightregister = styled.div`
   align-items: center;
   .registertext{
     width: 80%;
+    color: white;
+  }
+  .registertext svg{
+    color: white;
+  }
+  .registertext label{
     color: white;
   }
   .selectlanguage{
