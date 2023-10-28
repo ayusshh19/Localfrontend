@@ -8,7 +8,7 @@ const availableLanguages = ['en','hi']
 // have a look at the Quick start guide 
 // for passing in lng and translations on init
 const option = {
-  order:['navigator', 'htmlTag', 'path', 'subdomail'],
+  order:['navigator', 'htmlTag', 'path', 'subdomail','ayush'],
   checkWhitelist:true
 }
 i18n
