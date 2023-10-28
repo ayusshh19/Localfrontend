@@ -61,7 +61,7 @@ const Category=styled.div`
     justify-content: space-evenly;
     align-items: center;
     width: 100%;
-    margin: 4rem 0;
+    margin: 3rem 0;
     @media (max-width:990px) {
         margin: 1rem 0;
     }
